@@ -1,12 +1,14 @@
 <script lang="ts">
-    let dobDay: number;
-    let dobMonth: number;
-    let dobYear: number;
+  const EPOCH = 1970;
+  let dobDay: number;
+  let dobMonth: number;
+  let dobYear: number;
 
-    $: dob = new Date(dobYear, dobMonth - 1, dobDay);
-    $: years = new Date(Date.now() - dob.getTime()).getUTCFullYear() - 1970;
-    $: months = new Date(Date.now() - dob.getTime()).getMonth();
-    $: days = new Date(Date.now() - dob.getTime()).getDate();
+  $: dob = new Date(dobYear, dobMonth - 1, dobDay);
+  $: diff = new Date(Date.now() - +dob);
+  $: years = diff.getFullYear() - EPOCH;
+  $: months = diff.getMonth();
+  $: days = diff.getDate();
 </script>
 
 <main>
